@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>问卷一</title>
+    <style>
+      .nex{
+        height: 80px;
+        width: 100px;
+        border-radius: 3px;
+    }  
+    </style>
+    
+</head>
+<body>
+    <p>1.请介绍一下你自己：</p>
+
+    <div id="third">
+        <textarea placeholder="不少于100字！" style="height:200px;width:300px;overflow-y: auto;" v-model="picked" ></textarea>
+        
+        
+        <br>
+         <!-- <span>Picked: {{ picked }}</span>  -->
+
+         
+         <button-counter  @click.native="next" :disabled="picked.length>=100?false:true" title="提交"></button-counter>
+         <button-counter @click.native="retu" title="上一步"></button-counter>
+         <button-counter  @click.native="re" title="重置"></button-counter>
+    </div>
+    <!-- <div class="nex">
+        <button-counter></button-counter>
+    </div> -->
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        Vue.component('button-counter', {
+            props:['title'],
+            data: function () {
+    return {
+        one:"下一题",
+        //title:""
+    }
+  },
+    template: '<button class="nex">{{title}}</button>'
+    })
+        new Vue({
+        el: '#third',
+            data: {
+            picked:"",
+            dis:true,
+            one:"下一题",
+            two:"重置"
+            },
+            methods:{
+                next:function(){
+                   // console.log(1);
+                  
+                        window.location.href="./end.html"
+                    
+                },
+                re:function(){
+                    this.picked="",
+                    this.dis=true
+                },
+                retu(){
+                    window.location.href="./second.html"
+                }
+            }
+            
+        })
+        
+    </script>
+</body>
+</html>

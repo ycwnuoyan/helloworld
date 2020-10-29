@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>问卷一</title>
+    <style>
+      .nex{
+        height: 80px;
+        width: 100px;
+        border-radius: 3px;
+    }  
+    </style>
+    
+</head>
+<body>
+    <p>2.请问您的兴趣爱好是：</p>
+
+    <div id="second">
+        <input type="checkbox" id="one" value="one" v-model="picked">
+        <label for="one">看书</label>
+        <br>
+        <input type="checkbox" id="two" value="two" v-model="picked">
+        <label for="two">游泳</label>
+        <br>
+        <input type="checkbox" id="three" value="three" v-model="picked">
+        <label for="three">跑步</label>
+        <br>
+        <input type="checkbox" id="four" value="four" v-model="picked">
+        <label for="four">看电影</label>
+        <br>
+        <input type="checkbox" id="five" value="five" v-model="picked">
+        <label for="five">听音乐</label>
+        <br>
+         <!-- <span>Picked: {{ picked }}</span>  -->
+
+         
+         <button-counter  @click.native="next" :disabled="picked.length>=2?false:true" title="下一题"></button-counter>
+         <button-counter @click.native="retu" title="上一步"></button-counter>
+         <button-counter  @click.native="re" title="重置"></button-counter>
+    </div>
+    <!-- <div class="nex">
+        <button-counter></button-counter>
+    </div> -->
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        Vue.component('button-counter', {
+            props:['title'],
+            data: function () {
+    return {
+        one:"下一题",
+        //title:""
+    }
+  },
+    template: '<button class="nex">{{title}}</button>'
+    })
+        new Vue({
+        el: '#second',
+            data: {
+            picked: [],
+            dis:true,
+            one:"下一题",
+            two:"重置"
+            },
+            methods:{
+                next:function(){
+                    console.log(1);
+                    if(this.picked!=''){
+                        
+                        window.location.href="./third.html"
+                    }
+                },
+                re:function(){
+                    this.picked=[],
+                    this.dis=true
+                },
+                retu(){
+                    window.location.href="./first.html"
+                }
+            }
+            
+        })
+        
+    </script>
+</body>
+</html>

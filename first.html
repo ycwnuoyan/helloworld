@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>问卷一</title>
+    <style>
+      .nex{
+        height: 80px;
+        width: 100px;
+        border-radius: 3px;
+    }  
+    </style>
+    
+</head>
+<body>
+    <p>1.请问您的性别是：</p>
+
+    <div id="first">
+        <input type="radio" id="one" value="man" v-model="picked">
+        <label for="one">男</label>
+        
+        <input type="radio" id="two" value="woman" v-model="picked">
+        <label for="two">女</label>
+        
+        <input type="radio" id="three" value="baomi" v-model="picked">
+        <label for="three">保密</label>
+        <br>
+         <!-- <span>Picked: {{ picked }}</span>  -->
+
+         
+         <button-counter  @click.native="next" :disabled="picked==''?true:false" title="下一题"></button-counter>
+         <button-counter  @click.native="re" title="重置"></button-counter>
+    </div>
+    <!-- <div class="nex">
+        <button-counter></button-counter>
+    </div> -->
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        Vue.component('button-counter', {
+            props:['title'],
+            data: function () {
+    return {
+        one:"下一题",
+        //title:""
+    }
+  },
+    template: '<button class="nex">{{title}}</button>'
+    })
+        new Vue({
+        el: '#first',
+            data: {
+            picked: "",
+            dis:true,
+            one:"下一题",
+            two:"重置"
+            },
+            methods:{
+                next:function(){
+                    console.log(1);
+                    if(this.picked!=''){
+                        
+                        window.location.href="./second.html"
+                    }
+                },
+                re:function(){
+                    this.picked='',
+                    this.dis=true
+                }
+            }
+            
+        })
+        
+    </script>
+</body>
+</html>
